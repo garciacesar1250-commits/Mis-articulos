@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Repositorio Abierto de Artículos Científicos</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: #f4f6f9; color: #333; margin: 0; padding: 20px; }
+        h1 { text-align: center; color: #1a365d; margin-bottom: 20px; }
+        .search-box { display: block; width: 100%; max-width: 500px; margin: 0 auto 25px auto; padding: 12px; font-size: 16px; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 15px; max-width: 1100px; margin: 0 auto; }
+        .card { background: white; border-radius: 8px; padding: 15px; box-shadow: 0 2px 5px rgba(0,0,0,0.08); display: flex; flex-direction: column; justify-content: space-between; }
+        .card h3 { margin-top: 0; color: #2b6cb0; font-size: 17px; }
+        .card p { font-size: 14px; color: #4a5568; flex-grow: 1; margin-bottom: 15px; }
+        .btn { display: inline-block; padding: 8px 12px; background: #2b6cb0; color: white; text-decoration: none; border-radius: 4px; font-size: 14px; text-align: center; }
+        .btn:hover { background: #1a365d; }
+    </style>
+</head>
+<body>
+
+<h1>Repositorio de Artículos e Investigaciones</h1>
+<input type="text" id="searchInput" class="search-box" placeholder="Buscar artículo..." onkeyup="filterPDFs()">
+
+<div class="grid" id="pdfContainer">
+
+    <div class="card" data-title="Articulo 01 girasol SiO2 TiO2">
+        <h3>Artículo 01</h3>
+        <p>Aceite de girasol con nanopartículas de SiO2 y TiO2.</p>
+        <a href="pdfs/articulo_01.pdf" target="_blank" class="btn">Abrir PDF</a>
+    </div>
+
+    <div class="card" data-title="Articulo 02 Euphorbia ZnO">
+        <h3>Artículo 02</h3>
+        <p>Aceite de Euphorbia Lathyris con nanopartículas de ZnO.</p>
+        <a href="pdfs/articulo_02.pdf" target="_blank" class="btn">Abrir PDF</a>
+    </div>
+
+    <div class="card" data-title="Articulo 03 datil cobre Cu">
+        <h3>Artículo 03</h3>
+        <p>Aceite de dátil del desierto con nanopartículas de Cobre (Cu).</p>
+        <a href="pdfs/articulo_03.pdf" target="_blank" class="btn">Abrir PDF</a>
+    </div>
+
+    <div class="card" data-title="Articulo 04 Mahua epoxidado SiO2">
+        <h3>Artículo 04</h3>
+        <p>Aceite de Mahua epoxidado con nanopartículas de SiO2.</p>
+        <a href="pdfs/articulo_04.pdf" target="_blank" class="btn">Abrir PDF</a>
+    </div>
+
+    <div class="card" data-title="Articulo 05 WCO hidrolizados liquidos ionicos">
+        <h3>Artículo 05</h3>
+        <p>Aceites de cocina usados (WCO) hidrolizados con líquidos iónicos.</p>
+        <a href="pdfs/articulo_05.pdf" target="_blank" class="btn">Abrir PDF</a>
+    </div>
+
+    <div class="card" data-title="Articulo 06 WCO girasol epoxidado RSM">
+        <h3>Artículo 06</h3>
+        <p>WCO de girasol epoxidado (Diseño Estadístico RSM).</p>
+        <a href="pdfs/articulo_06.pdf" target="_blank" class="btn">Abrir PDF</a>
+    </div>
+
+    <div class="card" data-title="Articulo 07 ricino lignina palmitoilada">
+        <h3>Artículo 07</h3>
+        <p>Aceite de ricino con lignina palmitoilada como antioxidante.</p>
+        <a href="pdfs/articulo_07.pdf" target="_blank" class="btn">Abrir PDF</a>
+    </div>
+
+    <div class="card" data-title="Articulo 08 algodon TMP SAE 40">
+        <h3>Artículo 08</h3>
+        <p>Biolubricante de semilla de algodón (TMP) mezclado con SAE-40.</p>
+        <a href="pdfs/articulo_08.pdf" target="_blank" class="btn">Abrir PDF</a>
+    </div>
+
+    <div class="card" data-title="Articulo 09 ricino nano-montmorillonita C20A oleogeles">
+        <h3>Artículo 09</h3>
+        <p>Aceite de ricino y nano-montmorillonita C20A (Oleogeles).</p>
+        <a href="pdfs/articulo_09.pdf" target="_blank" class="btn">Abrir PDF</a>
+    </div>
+
+    <div class="card" data-title="Articulo 10 ester metilico estearina palma epoxidado">
+        <h3>Artículo 10</h3>
+        <p>Éster metílico de estearina de palma epoxidado.</p>
+        <a href="pdfs/articulo_10.pdf" target="_blank" class="btn">Abrir PDF</a>
+    </div>
+
+    <div class="card" data-title="Articulo 11 ricino Fe3O4 oxido hierro">
+        <h3>Artículo 11</h3>
+        <p>Aceite de ricino con nanopartículas de óxido de hierro (Fe3O4).</p>
+        <a href="pdfs/articulo_11.pdf" target="_blank" class="btn">Abrir PDF</a>
+    </div>
+
+    <div class="card" data-title="Articulo 12 microalgas fusel enzimatica">
+        <h3>Artículo 12</h3>
+        <p>Aceite de microalgas y aceite de fusel mediante catálisis enzimática.</p>
+        <a href="pdfs/articulo_12.pdf" target="_blank" class="btn">Abrir PDF</a>
+    </div>
+
+    <div class="card" data-title="Articulo 13 Shorea Robusta CuO oxido cobre">
+        <h3>Artículo 13</h3>
+        <p>Aceite de Sal (Shorea Robusta) con nanopartículas de CuO.</p>
+        <a href="pdfs/articulo_13.pdf" target="_blank" class="btn">Abrir PDF</a>
+    </div>
+
+    <div class="card" data-title="Articulo 14 microalgas hidrogeno motores">
+        <h3>Artículo 14</h3>
+        <p>Aceite de microalgas modificado para motores de hidrógeno.</p>
+        <a href="pdfs/articulo_14.pdf" target="_blank" class="btn">Abrir PDF</a>
+    </div>
+
+    <div class="card" data-title="Articulo 15 NPG palma CPO diester">
+        <h3>Artículo 15</h3>
+        <p>Diéster de neopentilglicol (NPG) basado en ácidos grasos de palma.</p>
+        <a href="pdfs/articulo_15.pdf" target="_blank" class="btn">Abrir PDF</a>
+    </div>
+
+    <div class="card" data-title="Articulo 16 esteres decilicos soya lipasas">
+        <h3>Artículo 16</h3>
+        <p>Ésteres decílicos de aceite de soya catalizados por lipasas.</p>
+        <a href="pdfs/articulo_16.pdf" target="_blank" class="btn">Abrir PDF</a>
+    </div>
+
+    <div class="card" data-title="Articulo 17 nanocelulosa MFC trietilo grasas">
+        <h3>Artículo 17</h3>
+        <p>Grasas biodegradables a base de nanocelulosa (MFC).</p>
+        <a href="pdfs/articulo_17.pdf" target="_blank" class="btn">Abrir PDF</a>
+    </div>
+
+    <div class="card" data-title="Articulo 18 BIOE oxido grafeno liquido ionico">
+        <h3>Artículo 18</h3>
+        <p>Biolubricante de éster (BIOE) con óxido de grafeno y líquido iónico.</p>
+        <a href="pdfs/articulo_18.pdf" target="_blank" class="btn">Abrir PDF</a>
+    </div>
+
+    <div class="card" data-title="Articulo 19 ricino superlubricidad DLC">
+        <h3>Artículo 19</h3>
+        <p>Aceite de ricino y ácidos grasos para superlubricidad en pares DLC.</p>
+        <a href="pdfs/articulo_19.pdf" target="_blank" class="btn">Abrir PDF</a>
+    </div>
+
+    <div class="card" data-title="Articulo 20 palma hBN nitruro boro">
+        <h3>Artículo 20</h3>
+        <p>Aceite de palma mezclado con nanopartículas de nitruro de boro (hBN).</p>
+        <a href="pdfs/articulo_20.pdf" target="_blank" class="btn">Abrir PDF</a>
+    </div>
+
+    <div class="card" data-title="Articulo 21 Calophyllum inophyllum CIO epoxidacion">
+        <h3>Artículo 21</h3>
+        <p>Aceite de Calophyllum inophyllum (CIO) modificado.</p>
+        <a href="pdfs/articulo_21.pdf" target="_blank" class="btn">Abrir PDF</a>
+    </div>
+
+    <div class="card" data-title="Articulo 22 Michelia Champaca CeO2 cerio">
+        <h3>Artículo 22</h3>
+        <p>Aceite de Michelia Champaca epoxidado con nanopartículas de CeO2.</p>
+        <a href="pdfs/articulo_22.pdf" target="_blank" class="btn">Abrir PDF</a>
+    </div>
+
+    <div class="card" data-title="Articulo 23 algodon RSM ANN sintetizado">
+        <h3>Artículo 23</h3>
+        <p>Biolubricante de algodón sintetizado mediante RSM y ANN.</p>
+        <a href="pdfs/articulo_23.pdf" target="_blank" class="btn">Abrir PDF</a>
+    </div>
+
+    <div class="card" data-title="Articulo 24 salvado arroz karanja epoxidacion transesterificacion">
+        <h3>Artículo 24</h3>
+        <p>Aceites de salvado de arroz y karanja modificados.</p>
+        <a href="pdfs/articulo_24.pdf" target="_blank" class="btn">Abrir PDF</a>
+    </div>
+
+    <div class="card" data-title="Articulo 25 grafeno 3D MWCNT ricino">
+        <h3>Artículo 25</h3>
+        <p>Grafeno poroso jerárquico 3D y MWCNT en aceite de ricino.</p>
+        <a href="pdfs/articulo_25.pdf" target="_blank" class="btn">Abrir PDF</a>
+    </div>
+
+    <div class="card" data-title="Articulo 26 ricino IF-WS2 oleico">
+        <h3>Artículo 26</h3>
+        <p>Aceite de ricino con nanopartículas de IF-WS2 modificadas.</p>
+        <a href="pdfs/articulo_26.pdf" target="_blank" class="btn">Abrir PDF</a>
+    </div>
+
+    <div class="card" data-title="Articulo 27 oleogeles lignina ricino">
+        <h3>Artículo 27</h3>
+        <p>Oleogeles a base de lignina modificada en aceite de ricino.</p>
+        <a href="pdfs/articulo_27.pdf" target="_blank" class="btn">Abrir PDF</a>
+    </div>
+
+    <div class="card" data-title="Articulo 28 TiO2 gC3N4 mani nanocompuesto">
+        <h3>Artículo 28</h3>
+        <p>Nanocompuesto de TiO2/gC3N4 en aceite vegetal de maní.</p>
+        <a href="pdfs/articulo_28.pdf" target="_blank" class="btn">Abrir PDF</a>
+    </div>
+
+    <div class="card" data-title="Articulo 29 BIOE GnP grafeno nanoplacas">
+        <h3>Artículo 29</h3>
+        <p>Biolubricante de éster (BIOE) con nanoplacas de grafeno (GnP).</p>
+        <a href="pdfs/articulo_29.pdf" target="_blank" class="btn">Abrir PDF</a>
+    </div>
+
+    <div class="card" data-title="Articulo 30 WCO curcumina cocina usado">
+        <h3>Artículo 30</h3>
+        <p>Biolubricante de aceite de cocina usado con curcumina.</p>
+        <a href="pdfs/articulo_30.pdf" target="_blank" class="btn">Abrir PDF</a>
+    </div>
+
+</div>
+
+<script>
+function filterPDFs() {
+    const input = document.getElementById('searchInput').value.toLowerCase();
+    const cards = document.querySelectorAll('.card');
+    cards.forEach(card => {
+        const text = card.innerText.toLowerCase();
+        card.style.display = text.includes(input) ? "" : "none";
+    });
+}
+</script>
+
+</body>
+</html>
