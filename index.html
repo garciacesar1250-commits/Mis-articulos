@@ -6,32 +6,35 @@
     <meta name="description" content="Repositorio Abierto y Matriz de Selección de 30 Artículos Científicos sobre Biolubricantes y Tribología.">
     <title>Repositorio & Matriz de Selección | Biolubricantes</title>
     
-    <!-- Tipografía Profesional Plus Jakarta Sans e Inter -->
+    <!-- Tipografía Profesional Plus Jakarta Sans & JetBrains Mono -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
     
     <style>
         :root {
-            --bg-body: #f8fafc;
-            --surface: #ffffff;
-            --surface-subtle: #f1f5f9;
+            /* Paleta cromática exacta extraída de las imágenes */
+            --c-navy-dark:  #001D39;
+            --c-deep-blue:  #0A4174;
+            --c-slate-blue: #49769F;
+            --c-teal-blue:  #4E8EA2;
+            --c-soft-blue:  #6EA2B3;
+            --c-sky-blue:   #7BBDE8;
+            --c-ice-blue:   #BDD8E9;
             
-            --primary: #0f172a;
-            --brand: #1e3a8a;
-            --accent: #2563eb;
-            --accent-hover: #1d4ed8;
-            --text-main: #0f172a;
-            --text-muted: #64748b;
-            --border: #e2e8f0;
-            --border-light: #f1f5f9;
+            --bg-body:       #f4f8fb;
+            --surface:       #ffffff;
+            --surface-glass: rgba(255, 255, 255, 0.85);
+            --border-color:  #d8e5f0;
+            --text-primary:  #001D39;
+            --text-muted:    #49769F;
             
             /* Badges */
-            --badge-nano-bg: #eff6ff; --badge-nano-text: #1d4ed8;
-            --badge-sint-bg: #eef2ff; --badge-sint-text: #4338ca;
-            --badge-gras-bg: #fffbeb; --badge-gras-text: #b45309;
-            --badge-mot-bg:  #f0fdf4; --badge-mot-text:  #15803d;
-            --badge-trib-bg: #fdf2f8; --badge-trib-text: #be185d;
+            --badge-nano-bg: #eaf4fb; --badge-nano-text: #0A4174;
+            --badge-sint-bg: #f0eefb; --badge-sint-text: #3730a3;
+            --badge-gras-bg: #fffbe6; --badge-gras-text: #92400e;
+            --badge-mot-bg:  #eafaf1; --badge-mot-text:  #15803d;
+            --badge-trib-bg: #fdf0f5; --badge-trib-text: #9d174d;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -39,174 +42,192 @@
         body {
             font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
             background-color: var(--bg-body);
-            color: var(--text-main);
+            color: var(--text-primary);
             line-height: 1.6;
-            -webkit-font-smoothing: antialiased;
-            padding: 3rem 1.5rem;
+            padding: 2.5rem 1.5rem;
+            position: relative;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Formas orgánicas flotantes en el fondo */
+        .bg-blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            z-index: -1;
+            opacity: 0.6;
+            animation: floatBlob 12s infinite alternate ease-in-out;
+        }
+        .blob-1 { top: -5%; left: -5%; width: 450px; height: 450px; background: var(--c-ice-blue); }
+        .blob-2 { top: 30%; right: -10%; width: 500px; height: 500px; background: var(--c-sky-blue); opacity: 0.35; }
+        .blob-3 { bottom: 10%; left: 10%; width: 400px; height: 400px; background: var(--c-soft-blue); opacity: 0.25; }
+
+        @keyframes floatBlob {
+            0% { transform: translateY(0) scale(1); }
+            100% { transform: translateY(30px) scale(1.08); }
         }
 
         .container {
-            max-width: 1240px;
+            max-width: 1280px;
             margin: 0 auto;
         }
 
-        /* Hero / Header Minimalista */
+        /* Encabezado Principal */
         header {
             margin-bottom: 3.5rem;
             position: relative;
         }
 
-        .header-tag {
+        .header-badge {
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
-            padding: 0.35rem 0.85rem;
-            background: #eff6ff;
-            color: var(--accent);
+            padding: 0.4rem 1rem;
+            background: rgba(123, 189, 232, 0.25);
+            color: var(--c-deep-blue);
+            border: 1px solid var(--c-sky-blue);
             border-radius: 9999px;
-            font-size: 0.8rem;
-            font-weight: 600;
+            font-size: 0.825rem;
+            font-weight: 700;
             letter-spacing: 0.03em;
             text-transform: uppercase;
             margin-bottom: 1.25rem;
         }
 
         header h1 {
-            font-size: clamp(2rem, 4vw, 2.75rem);
+            font-size: clamp(2.2rem, 4.5vw, 3rem);
             font-weight: 800;
             letter-spacing: -0.03em;
-            color: var(--primary);
+            color: var(--c-navy-dark);
             line-height: 1.15;
             margin-bottom: 1rem;
         }
 
         header p.subtitle {
-            font-size: 1.1rem;
-            color: var(--text-muted);
-            max-width: 780px;
-            font-weight: 400;
+            font-size: 1.15rem;
+            color: var(--c-slate-blue);
+            max-width: 820px;
+            font-weight: 500;
         }
 
-        /* Sección de Criterios (Listado Integrado) */
+        /* Sección de Criterios en Listado Integrado */
         .methodology-section {
             margin-bottom: 4rem;
-            border-top: 1px solid var(--border);
-            padding-top: 2.5rem;
-        }
-
-        .section-header {
-            margin-bottom: 2rem;
+            background: var(--surface-glass);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: 0 10px 30px -10px rgba(0, 29, 57, 0.05);
         }
 
         .section-title {
-            font-size: 1.35rem;
-            font-weight: 700;
-            color: var(--primary);
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: var(--c-navy-dark);
             letter-spacing: -0.02em;
             display: flex;
             align-items: center;
-            gap: 0.6rem;
+            gap: 0.75rem;
+            margin-bottom: 0.5rem;
         }
 
         .section-desc {
-            color: var(--text-muted);
+            color: var(--c-slate-blue);
             font-size: 0.95rem;
-            margin-top: 0.5rem;
-            max-width: 850px;
+            margin-bottom: 2rem;
+            max-width: 900px;
         }
 
-        /* Listado Numérico Integrado */
+        /* Lista Numérica Elegante sin recuadros pesados */
         .criteria-list {
             list-style: none;
-            margin: 2rem 0;
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 1.75rem 2.5rem;
+            gap: 2rem 2.5rem;
+            margin-bottom: 2.5rem;
         }
 
         .criteria-item {
             display: flex;
             align-items: flex-start;
             gap: 1.25rem;
-            position: relative;
         }
 
         .criteria-number {
             font-family: 'JetBrains Mono', monospace;
             font-size: 1.1rem;
             font-weight: 700;
-            color: var(--brand);
-            background: var(--surface-subtle);
-            width: 42px;
-            height: 42px;
-            border-radius: 10px;
+            color: var(--c-deep-blue);
+            background: linear-gradient(135deg, var(--c-ice-blue) 0%, var(--c-sky-blue) 100%);
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
             flex-shrink: 0;
-            border: 1px solid var(--border);
-        }
-
-        .criteria-content {
-            flex: 1;
+            box-shadow: 0 4px 10px rgba(10, 65, 116, 0.12);
         }
 
         .criteria-title {
-            font-size: 0.95rem;
+            font-size: 0.975rem;
             font-weight: 700;
-            color: var(--primary);
+            color: var(--c-navy-dark);
             margin-bottom: 0.25rem;
         }
 
         .criteria-text {
             font-size: 0.875rem;
-            color: var(--text-muted);
+            color: var(--c-slate-blue);
             line-height: 1.5;
         }
 
-        /* Barra de Métricas Rápidas */
+        /* Barra de Métricas */
         .stats-bar {
             display: flex;
             flex-wrap: wrap;
-            gap: 2rem;
+            gap: 1.5rem;
             padding: 1.5rem 2rem;
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 14px;
-            margin-top: 2.5rem;
+            background: linear-gradient(135deg, var(--c-navy-dark) 0%, var(--c-deep-blue) 100%);
+            border-radius: 16px;
+            color: white;
+            box-shadow: 0 8px 20px rgba(0, 29, 57, 0.15);
         }
 
         .stat-group {
             flex: 1;
-            min-width: 160px;
+            min-width: 170px;
         }
 
         .stat-value {
-            font-size: 1.4rem;
+            font-size: 1.45rem;
             font-weight: 800;
-            color: var(--brand);
+            color: var(--c-sky-blue);
             letter-spacing: -0.02em;
         }
 
         .stat-label {
             font-size: 0.8rem;
             font-weight: 500;
-            color: var(--text-muted);
+            color: var(--c-ice-blue);
         }
 
-        /* Controles, Buscador y Filtros */
+        /* Barra de Filtros y Buscador */
         .controls-wrapper {
             position: sticky;
             top: 1rem;
             z-index: 40;
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid var(--border);
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border: 1px solid var(--border-color);
             border-radius: 16px;
             padding: 1rem 1.25rem;
             margin-bottom: 2rem;
-            box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.05);
+            box-shadow: 0 10px 25px -5px rgba(0, 29, 57, 0.08);
         }
 
         .search-and-views {
@@ -221,52 +242,51 @@
         .search-input-box {
             position: relative;
             flex: 1;
-            min-width: 260px;
+            min-width: 270px;
         }
 
         .search-input-box input {
             width: 100%;
-            padding: 0.7rem 1rem 0.7rem 2.5rem;
+            padding: 0.75rem 1rem 0.75rem 2.6rem;
             font-size: 0.9rem;
             font-family: inherit;
             background: var(--bg-body);
-            border: 1px solid var(--border);
+            border: 1px solid var(--border-color);
             border-radius: 10px;
-            color: var(--text-main);
+            color: var(--text-primary);
             outline: none;
             transition: all 0.2s;
         }
 
         .search-input-box input:focus {
             background: var(--surface);
-            border-color: var(--accent);
-            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+            border-color: var(--c-teal-blue);
+            box-shadow: 0 0 0 3px rgba(78, 142, 162, 0.2);
         }
 
         .search-icon {
             position: absolute;
-            left: 0.85rem;
+            left: 0.9rem;
             top: 50%;
             transform: translateY(-50%);
-            color: var(--text-muted);
-            font-size: 0.9rem;
+            color: var(--c-slate-blue);
         }
 
         .view-pills {
             display: inline-flex;
-            background: var(--surface-subtle);
+            background: var(--bg-body);
             padding: 0.25rem;
             border-radius: 10px;
-            border: 1px solid var(--border);
+            border: 1px solid var(--border-color);
         }
 
         .view-btn {
             border: none;
             background: transparent;
-            padding: 0.45rem 0.9rem;
+            padding: 0.45rem 1rem;
             font-size: 0.825rem;
-            font-weight: 600;
-            color: var(--text-muted);
+            font-weight: 700;
+            color: var(--c-slate-blue);
             border-radius: 8px;
             cursor: pointer;
             transition: all 0.2s;
@@ -274,9 +294,9 @@
         }
 
         .view-btn.active {
-            background: var(--surface);
-            color: var(--primary);
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.06);
+            background: var(--c-deep-blue);
+            color: white;
+            box-shadow: 0 2px 6px rgba(10, 65, 116, 0.2);
         }
 
         .filters-scroll {
@@ -290,13 +310,13 @@
         .filters-scroll::-webkit-scrollbar { display: none; }
 
         .filter-chip {
-            border: 1px solid var(--border);
+            border: 1px solid var(--border-color);
             background: var(--surface);
-            color: var(--text-muted);
-            padding: 0.35rem 0.85rem;
+            color: var(--c-slate-blue);
+            padding: 0.4rem 0.95rem;
             border-radius: 9999px;
             font-size: 0.8rem;
-            font-weight: 500;
+            font-weight: 600;
             cursor: pointer;
             white-space: nowrap;
             transition: all 0.2s;
@@ -304,19 +324,18 @@
         }
 
         .filter-chip:hover, .filter-chip.active {
-            background: var(--primary);
+            background: var(--c-deep-blue);
             color: white;
-            border-color: var(--primary);
+            border-color: var(--c-deep-blue);
         }
 
         /* Badges */
         .badge {
             display: inline-block;
-            padding: 0.25rem 0.6rem;
+            padding: 0.25rem 0.65rem;
             border-radius: 6px;
             font-size: 0.75rem;
-            font-weight: 600;
-            letter-spacing: -0.01em;
+            font-weight: 700;
         }
         .badge-nano { background: var(--badge-nano-bg); color: var(--badge-nano-text); }
         .badge-sint { background: var(--badge-sint-bg); color: var(--badge-sint-text); }
@@ -324,7 +343,7 @@
         .badge-mot  { background: var(--badge-mot-bg);  color: var(--badge-mot-text);  }
         .badge-trib { background: var(--badge-trib-bg); color: var(--badge-trib-text); }
 
-        /* Tarjetas (Grid View) */
+        /* Vista de Tarjetas (Grid View) */
         .cards-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
@@ -333,19 +352,20 @@
 
         .card {
             background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 14px;
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
             padding: 1.5rem;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
         }
 
         .card:hover {
             transform: translateY(-4px);
-            border-color: #cbd5e1;
-            box-shadow: 0 12px 24px -6px rgba(15, 23, 42, 0.08);
+            border-color: var(--c-teal-blue);
+            box-shadow: 0 12px 30px -8px rgba(10, 65, 116, 0.12);
         }
 
         .card-top {
@@ -359,21 +379,21 @@
             font-family: 'JetBrains Mono', monospace;
             font-size: 0.8rem;
             font-weight: 700;
-            color: var(--brand);
+            color: var(--c-deep-blue);
         }
 
         .card-title {
-            font-size: 1.025rem;
+            font-size: 1.05rem;
             font-weight: 700;
-            color: var(--primary);
+            color: var(--c-navy-dark);
             line-height: 1.4;
-            margin-bottom: 0.75rem;
+            margin-bottom: 0.85rem;
             letter-spacing: -0.01em;
         }
 
         .card-info {
             font-size: 0.85rem;
-            color: var(--text-muted);
+            color: var(--c-slate-blue);
             margin-bottom: 1.25rem;
         }
 
@@ -384,56 +404,58 @@
         .doi-text {
             font-family: 'JetBrains Mono', monospace;
             font-size: 0.78rem;
-            color: var(--accent);
+            color: var(--c-deep-blue);
             text-decoration: none;
             word-break: break-all;
         }
 
+        .doi-text:hover { text-decoration: underline; }
+
         .card-actions {
             display: flex;
             gap: 0.5rem;
-            padding-top: 0.75rem;
-            border-top: 1px solid var(--border-light);
+            padding-top: 0.85rem;
+            border-top: 1px solid var(--border-color);
         }
 
         .btn-link {
             flex: 1;
             text-align: center;
-            padding: 0.55rem 0.75rem;
+            padding: 0.6rem 0.75rem;
             border-radius: 8px;
             font-size: 0.825rem;
-            font-weight: 600;
+            font-weight: 700;
             text-decoration: none;
             transition: all 0.2s;
         }
 
         .btn-link-main {
-            background: var(--brand);
+            background: var(--c-deep-blue);
             color: white;
         }
 
         .btn-link-main:hover {
-            background: var(--accent-hover);
+            background: var(--c-navy-dark);
         }
 
         .btn-link-sub {
-            background: var(--surface-subtle);
-            color: var(--text-main);
-            border: 1px solid var(--border);
+            background: var(--c-ice-blue);
+            color: var(--c-navy-dark);
+            border: 1px solid var(--c-sky-blue);
         }
 
         .btn-link-sub:hover {
-            background: #e2e8f0;
+            background: var(--c-sky-blue);
         }
 
         /* Tabla Matriz */
         .table-wrap {
             display: none;
             background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 14px;
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
             overflow: hidden;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+            box-shadow: 0 4px 15px rgba(0, 29, 57, 0.04);
         }
 
         .table-responsive {
@@ -448,53 +470,128 @@
         }
 
         th {
-            background: #f8fafc;
-            color: var(--primary);
+            background: var(--c-navy-dark);
+            color: white;
             font-weight: 700;
             padding: 1rem 1.15rem;
-            border-bottom: 1px solid var(--border);
             white-space: nowrap;
         }
 
         td {
             padding: 1rem 1.15rem;
-            border-bottom: 1px solid var(--border-light);
-            color: var(--text-main);
+            border-bottom: 1px solid var(--border-color);
+            color: var(--c-navy-dark);
             vertical-align: middle;
         }
 
         tr:last-child td { border-bottom: none; }
-        tr:hover td { background: #f8fafc; }
+        tr:hover td { background: var(--bg-body); }
+
+        /* ========================================================
+           MUÑEQUITO INTERACTIVO (ASISTENTE ROBOT - "TRIBOBOT")
+           ======================================================== */
+        .mascot-widget {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            cursor: pointer;
+        }
+
+        .mascot-dialogue {
+            background: var(--c-navy-dark);
+            color: white;
+            padding: 0.85rem 1.15rem;
+            border-radius: 16px;
+            border-bottom-right-radius: 4px;
+            font-size: 0.85rem;
+            max-width: 260px;
+            box-shadow: 0 10px 25px rgba(0, 29, 57, 0.25);
+            margin-bottom: 10px;
+            position: relative;
+            animation: dialoguePop 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 1px solid var(--c-teal-blue);
+        }
+
+        .mascot-dialogue strong {
+            color: var(--c-sky-blue);
+        }
+
+        @keyframes dialoguePop {
+            0% { opacity: 0; transform: scale(0.8) translateY(10px); }
+            100% { opacity: 1; transform: scale(1) translateY(0); }
+        }
+
+        .mascot-avatar {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--c-deep-blue) 0%, var(--c-navy-dark) 100%);
+            border: 3px solid var(--c-sky-blue);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 20px rgba(0, 29, 57, 0.3);
+            transition: transform 0.3s ease;
+            position: relative;
+        }
+
+        .mascot-avatar:hover {
+            transform: scale(1.1) rotate(-5deg);
+        }
+
+        /* SVG Robot de la Capucha */
+        .robot-svg {
+            width: 45px;
+            height: 45px;
+        }
+
+        .glowing-eye {
+            animation: blinkEye 3s infinite;
+        }
+
+        @keyframes blinkEye {
+            0%, 90%, 100% { opacity: 1; }
+            95% { opacity: 0.2; }
+        }
 
         footer {
             margin-top: 4rem;
             padding-top: 2rem;
-            border-top: 1px solid var(--border);
+            border-top: 1px solid var(--border-color);
             text-align: center;
-            color: var(--text-muted);
+            color: var(--c-slate-blue);
             font-size: 0.85rem;
         }
     </style>
 </head>
 <body>
 
+<!-- Formas orgánicas decorativas de fondo -->
+<div class="bg-blob blob-1"></div>
+<div class="bg-blob blob-2"></div>
+<div class="bg-blob blob-3"></div>
+
 <div class="container">
     
     <!-- Encabezado Principal -->
     <header>
-        <div class="header-tag">
-            <span>🔬 Revisión Sistemática</span>
+        <div class="header-badge">
+            <span>🔬 Revisión Sistemática (2020 – 2026)</span>
         </div>
         <h1>Repositorio & Matriz de Selección Bibliográfica</h1>
         <p class="subtitle">Recopilación estructurada de 30 investigaciones primarias sobre la aplicación de biolubricantes vegetales y nanoaditivos en elementos mecánicos.</p>
     </header>
 
-    <!-- Sección Metodológica: Criterios Integrados en Listado -->
+    <!-- Sección Metodológica: Criterios Integrados en Listado Elegante -->
     <section class="methodology-section">
-        <div class="section-header">
-            <h2 class="section-title">📌 Criterios de Selección Bibliográfica</h2>
-            <p class="section-desc">Para estructurar el marco teórico de la investigación, el proceso de curaduría documental se rigió estrictamente por seis criterios cuantitativos y cualitativos de inclusión:</p>
+        <div class="section-title">
+            <span>📌 Criterios de Selección Bibliográfica</span>
         </div>
+        <p class="section-desc">Para estructurar el marco teórico de la investigación, la curaduría documental se sujetó rigurosamente a seis criterios cualitativos y cuantitativos de inclusión:</p>
 
         <ul class="criteria-list">
             <li class="criteria-item">
@@ -546,7 +643,7 @@
             </li>
         </ul>
 
-        <!-- Barra de Métricas Rápidas -->
+        <!-- Barra de Métricas -->
         <div class="stats-bar">
             <div class="stat-group">
                 <div class="stat-value">30</div>
@@ -572,7 +669,7 @@
         <div class="search-and-views">
             <div class="search-input-box">
                 <span class="search-icon">🔍</span>
-                <input type="text" id="searchInput" placeholder="Buscar por título, autor, revista o tema..." onkeyup="applyFilters()">
+                <input type="text" id="searchInput" placeholder="Buscar por título, autor, revista o foco temático..." onkeyup="applyFilters()">
             </div>
             
             <div class="view-pills">
@@ -620,6 +717,27 @@
         Repositorio de Investigación en Biolubricantes y Tribología &copy; 2026 | Universidad Distrital Francisco José de Caldas
     </footer>
 
+</div>
+
+<!-- ASISTENTE ROBOT INTERACTIVO ("TRIBOBOT") -->
+<div class="mascot-widget" onclick="nextMascotTip()">
+    <div class="mascot-dialogue" id="mascotDialogue">
+        ¡Hola! Soy <strong>TriboBot 🤖</strong>. Haz clic sobre mí para ver consejos de navegación.
+    </div>
+    <div class="mascot-avatar">
+        <!-- SVG Avatar Robot de Capucha -->
+        <svg class="robot-svg" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Capucha -->
+            <path d="M50 10C25 10 15 30 15 55C15 75 30 85 50 85C70 85 85 75 85 55C85 30 75 10 50 10Z" fill="#6EA2B3"/>
+            <!-- Cara / Pantalla -->
+            <rect x="28" y="32" width="44" height="32" rx="10" fill="#001D39"/>
+            <!-- Ojos brillante rosa/naranja -->
+            <rect class="glowing-eye" x="37" y="42" width="7" height="12" rx="3.5" fill="#FF7B7B"/>
+            <rect class="glowing-eye" x="56" y="42" width="7" height="12" rx="3.5" fill="#FF7B7B"/>
+            <!-- Capucha detalles -->
+            <path d="M50 10C35 10 22 22 20 40C25 35 38 30 50 30C62 30 75 35 80 40C78 22 65 10 50 10Z" fill="#7BBDE8"/>
+        </svg>
+    </div>
 </div>
 
 <script>
@@ -676,7 +794,6 @@ function renderContent() {
 
     const filtered = articlesData.filter(item => {
         const matchesCategory = (selectedCategory === 'all') || (item.focus === selectedCategory);
-        // El DOI queda excluido del filtro de búsqueda
         const matchesSearch = item.title.toLowerCase().includes(searchVal) ||
                               item.authors.toLowerCase().includes(searchVal) ||
                               item.journal.toLowerCase().includes(searchVal) ||
@@ -718,7 +835,7 @@ function renderContent() {
                 <td>${item.year}</td>
                 <td>${item.journal}</td>
                 <td>⭐ ${item.citations}</td>
-                <td class="doi-text"><a href="https://doi.org/${item.doi}" target="_blank" style="color: var(--accent); text-decoration: none;">${item.doi}</a></td>
+                <td style="font-family: monospace; font-size: 0.78rem;"><a href="https://doi.org/${item.doi}" target="_blank" style="color: var(--c-deep-blue); text-decoration: none;">${item.doi}</a></td>
                 <td><span class="badge ${badgeClass}">${item.focus}</span></td>
                 <td>
                     <a href="${item.pdf}" target="_blank" class="btn-link btn-link-main" style="padding: 0.35rem 0.65rem; font-size: 0.75rem;">PDF</a>
@@ -748,9 +865,27 @@ function applyFilters() {
     renderContent();
 }
 
+/* Lógica Interactiva del Asistente Robot ("TriboBot") */
+const mascotTips = [
+    "¡Hola! Soy <strong>TriboBot 🤖</strong>. Haz clic sobre mí para ver consejos de navegación.",
+    "💡 <strong>Tip:</strong> Puedes usar la barra de búsqueda para filtrar artículos por nanoaditivos específicos como <em>SiO2, TiO2, CuO o Grafeno</em>.",
+    "📋 <strong>Tip:</strong> Alterna a la vista de <strong>Matriz Completa</strong> para ver la tabla organizada con revistas y citas.",
+    "🔗 <strong>Tip:</strong> Cada artículo tiene su DOI oficial enlazado directamente para verificar su autenticidad.",
+    "📄 <strong>Tip:</strong> Todos los 30 documentos PDF están listos para lectura humana o procesamiento por IA."
+];
+let tipIndex = 0;
+
+function nextMascotTip() {
+    tipIndex = (tipIndex + 1) % mascotTips.length;
+    const dialogue = document.getElementById('mascotDialogue');
+    dialogue.style.animation = 'none';
+    dialogue.offsetHeight; // force reflow
+    dialogue.style.animation = 'dialoguePop 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+    dialogue.innerHTML = mascotTips[tipIndex];
+}
+
 renderContent();
 </script>
 
 </body>
 </html>
-   
