@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Repositorio Abierto y Matriz de Selección de 30 Artículos Científicos sobre Biolubricantes y Tribología.">
+    <meta name="description" content="Repositorio Abierto y Matriz de Selección de 30 Artículos Científicos de Investigación Original sobre Biolubricantes y Tribología.">
     <title>Repositorio y Matriz de Selección | Biolubricantes</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
@@ -18,7 +18,7 @@
             --border: #e2e8f0;
             --accent: #2563eb;
             
-            /* Badges colors */
+            /* Badges colores */
             --badge-nano-bg: #dbeafe; --badge-nano-text: #1e40af;
             --badge-sint-bg: #e0e7ff; --badge-sint-text: #3730a3;
             --badge-gras-bg: #fef3c7; --badge-gras-text: #92400e;
@@ -37,7 +37,7 @@
         }
 
         .container {
-            max-width: 1280px;
+            max-width: 1350px;
             margin: 0 auto;
         }
 
@@ -61,24 +61,24 @@
         header p {
             font-size: 1.05rem;
             color: #94a3b8;
-            max-width: 800px;
+            max-width: 850px;
             margin: 0 auto;
         }
 
-        /* Sección Metodológica */
+        /* Card Metodológica */
         .methodology-card {
             background: var(--surface);
             border: 1px solid var(--border);
             border-radius: 12px;
-            padding: 1.75rem;
+            padding: 2rem;
             margin-bottom: 2rem;
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
         }
 
         .methodology-card h2 {
             color: var(--primary);
-            font-size: 1.35rem;
-            margin-bottom: 0.75rem;
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
             display: flex;
             align-items: center;
             gap: 0.5rem;
@@ -87,15 +87,39 @@
         .methodology-card p {
             color: var(--text-muted);
             font-size: 0.95rem;
-            margin-bottom: 1rem;
+            margin-bottom: 1.25rem;
             text-align: justify;
+        }
+
+        .criteria-list {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .criteria-item {
+            background: #f8fafc;
+            border: 1px solid var(--border);
+            border-left: 4px solid var(--secondary);
+            border-radius: 8px;
+            padding: 0.9rem 1.1rem;
+            font-size: 0.9rem;
+            color: var(--text-main);
+        }
+
+        .criteria-item strong {
+            color: var(--primary);
+            display: block;
+            margin-bottom: 0.2rem;
         }
 
         .stats-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
             gap: 1rem;
-            margin-top: 1.25rem;
+            margin-top: 1.5rem;
         }
 
         .stat-item {
@@ -103,22 +127,22 @@
             padding: 1rem;
             border-radius: 8px;
             text-align: center;
-            border-left: 4px solid var(--secondary);
+            border-left: 4px solid var(--primary);
         }
 
         .stat-item .number {
-            font-size: 1.5rem;
+            font-size: 1.35rem;
             font-weight: 700;
             color: var(--primary);
         }
 
         .stat-item .label {
-            font-size: 0.825rem;
+            font-size: 0.8rem;
             color: var(--text-muted);
             font-weight: 500;
         }
 
-        /* Toolbar y Controles */
+        /* Controles */
         .controls-panel {
             background: var(--surface);
             border: 1px solid var(--border);
@@ -197,7 +221,7 @@
             border-color: var(--primary);
         }
 
-        /* Badges Temáticos */
+        /* Badges */
         .badge {
             display: inline-block;
             padding: 0.25rem 0.6rem;
@@ -211,7 +235,7 @@
         .badge-mot  { background: var(--badge-mot-bg);  color: var(--badge-mot-text);  }
         .badge-trib { background: var(--badge-trib-bg); color: var(--badge-trib-text); }
 
-        /* Vista de Tarjetas (Grid) */
+        /* Grid Tarjetas */
         .cards-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
@@ -284,7 +308,7 @@
         .btn-secondary { background: #f1f5f9; color: var(--text-main); border: 1px solid var(--border); }
         .btn-secondary:hover { background: #e2e8f0; }
 
-        /* Vista de Tabla (Matriz) */
+        /* Tabla Matriz */
         .table-container {
             display: none;
             background: var(--surface);
@@ -298,11 +322,11 @@
             width: 100%;
             border-collapse: collapse;
             text-align: left;
-            font-size: 0.875rem;
+            font-size: 0.85rem;
         }
 
         th, td {
-            padding: 1rem 1.25rem;
+            padding: 0.85rem 1rem;
             border-bottom: 1px solid var(--border);
         }
 
@@ -315,13 +339,21 @@
 
         tr:hover { background: #f1f5f9; }
 
-        .doi-link {
+        .doi-cell {
+            font-family: monospace;
+            font-size: 0.78rem;
             color: var(--secondary);
-            text-decoration: none;
-            font-size: 0.8rem;
+            word-break: break-all;
         }
 
-        .doi-link:hover { text-decoration: underline; }
+        .doi-cell a {
+            color: var(--secondary);
+            text-decoration: none;
+        }
+
+        .doi-cell a:hover {
+            text-decoration: underline;
+        }
 
         footer {
             text-align: center;
@@ -340,42 +372,66 @@
     <!-- Encabezado Principal -->
     <header>
         <h1>Repositorio & Matriz de Selección Bibliográfica</h1>
-        <p>Revisión sistemática de 30 artículos científicos de alto impacto enfocados en biolubricantes, nanoaditivos y comportamiento tribológico.</p>
+        <p>Revisión sistemática de 30 artículos científicos de investigación original enfocados en biolubricantes a partir de aceites vegetales en elementos de máquinas.</p>
     </header>
 
-    <!-- Enunciado Metodológico -->
+    <!-- Sección Metodológica y Criterios de Selección -->
     <section class="methodology-card">
-        <h2>📊 Estrategia de Búsqueda y Selección Metodológica</h2>
+        <h2>📊 Criterios de Selección Bibliográfica</h2>
         <p>
-            La presente selección de 30 artículos científicos constituye el marco estructural para la investigación en <strong>Biolubricantes a partir de aceites vegetales en elementos de máquinas</strong>. Los documentos fueron extraídos de bases de datos académicas internacionales reconocidas como <strong>Scopus, IEEE Xplore, ScienceDirect (Elsevier), SpringerLink y ACS Publications</strong>. 
+            Para conformar la presente base documental y garantizar el rigor metodológico en la revisión académica, la selección de los artículos científicos se sujetó a los siguientes criterios de inclusión y exclusión:
         </p>
-        <p>
-            El criterio de selección aplicó ecuaciones de búsqueda estructuradas combinando términos clave como <em>"biolubricant", "tribology", "nano-additives", "viscosity index", "wear scar diameter" y "chemical modification"</em>. Se priorizaron publicaciones recientes (2020–2023) con métricas elevadas de citas en Scopus y factor de impacto, clasificándolas en 5 focos temáticos estratégicos para abordar la formulación, caracterización y desempeño funcional en sistemas mecánicos reales.
-        </p>
+
+        <ul class="criteria-list">
+            <li class="criteria-item">
+                <strong>1. Bases de Datos Científicas:</strong>
+                Indexados en fuentes académicas de alto prestigio internacional (Scopus, IEEE Xplore, Elsevier / ScienceDirect, Springer, ACS).
+            </li>
+            <li class="criteria-item">
+                <strong>2. Muestra Mínima:</strong>
+                Selección sistemática de un cuerpo documental integrado por un mínimo de 30 trabajos investigativos.
+            </li>
+            <li class="criteria-item">
+                <strong>3. Investigaciones Originales:</strong>
+                Inclusión exclusiva de artículos de investigación primaria. Se excluyeron textos de revisión (reviews), capítulos de libros o artículos de reflexión.
+            </li>
+            <li class="criteria-item">
+                <strong>4. Ventana Temporal (Máx. 6 Años):</strong>
+                Publicaciones con un máximo de 6 años de antigüedad, en el rango cronológico de 2020 a 2026.
+            </li>
+            <li class="criteria-item">
+                <strong>5. Mínimo 10 Citas:</strong>
+                Cada trabajo seleccionado cuenta con un respaldo comprobado de mínimo diez (10) citas de otros autores en Scopus.
+            </li>
+            <li class="criteria-item">
+                <strong>6. Identificador DOI:</strong>
+                Todos los documentos cuentan con su respectivo identificador digital de objeto (DOI) activo y verificado.
+            </li>
+        </ul>
 
         <div class="stats-grid">
             <div class="stat-item">
                 <div class="number">30</div>
-                <div class="label">Artículos Seleccionados</div>
+                <div class="label">Investigaciones Originales</div>
             </div>
             <div class="stat-item">
-                <div class="number">5</div>
-                <div class="label">Bases de Datos Principales</div>
+                <div class="number">Scopus / IEEE / Elsevier</div>
+                <div class="label">Bases de Datos Indexadas</div>
             </div>
             <div class="stat-item">
-                <div class="number">2020 - 2023</div>
-                <div class="label">Rango de Publicación</div>
+                <div class="number">2020 - 2026</div>
+                <div class="label">Rango Temporal (≤ 6 Años)</div>
             </div>
             <div class="stat-item">
-                <div class="number">1,800+</div>
-                <div class="label">Total Citas Scopus</div>
+                <div class="number">≥ 10 Citas</div>
+                <div class="label">Impacto Comprobado por Artículo</div>
             </div>
         </div>
     </section>
 
-    <!-- Panel de Controles: Buscador y Alternador de Vistas -->
+    <!-- Controles -->
     <div class="controls-panel">
-        <input type="text" id="searchInput" class="search-box" placeholder="🔍 Buscar por título, autor, revista, nanoaditivo o DOI..." onkeyup="applyFilters()">
+        <input type="text" id="searchInput" class="search-box" placeholder="🔍 Buscar por título, autor, revista o foco temático..." onkeyup="applyFilters()">
         
         <div class="view-toggle">
             <button class="toggle-btn active" id="btnGrid" onclick="setView('grid')">📱 Vista Tarjetas</button>
@@ -383,7 +439,7 @@
         </div>
     </div>
 
-    <!-- Filtros por Foco Temático -->
+    <!-- Filtros -->
     <div class="filters-group" id="filterGroup">
         <button class="filter-chip active" onclick="filterCategory('all', this)">Todos (30)</button>
         <button class="filter-chip" onclick="filterCategory('Nanoaditivos', this)">Nanoaditivos</button>
@@ -393,12 +449,10 @@
         <button class="filter-chip" onclick="filterCategory('Propiedades tribológicas / otros', this)">Propiedades Tribológicas</button>
     </div>
 
-    <!-- VISTA 1: GRID DE TARJETAS -->
-    <div class="cards-grid" id="cardsGrid">
-        <!-- Generado dinámicamente -->
-    </div>
+    <!-- Vista 1: Tarjetas -->
+    <div class="cards-grid" id="cardsGrid"></div>
 
-    <!-- VISTA 2: TABLA MATRIZ DE SELECCIÓN -->
+    <!-- Vista 2: Tabla Matriz -->
     <div class="table-container" id="tableContainer">
         <table>
             <thead>
@@ -408,14 +462,13 @@
                     <th>Autores</th>
                     <th>Año</th>
                     <th>Revista</th>
-                    <th>Citas</th>
+                    <th>Citas (Scopus)</th>
+                    <th>DOI</th>
                     <th>Foco Temático</th>
                     <th>Documento</th>
                 </tr>
             </thead>
-            <tbody id="matrixTableBody">
-                <!-- Generado dinámicamente -->
-            </tbody>
+            <tbody id="matrixTableBody"></tbody>
         </table>
     </div>
 
@@ -426,7 +479,6 @@
 </div>
 
 <script>
-// Datos de la Matriz de Selección
 const articlesData = [
   { id: 1, authors: "Cortes V.; Sanchez K.; Gonzalez R.; Alcoutlabi M.; Ortega J.A.", title: "The performance of SiO2 and TiO2 nanoparticles as lubricant additives in sunflower oil", year: 2020, journal: "Lubricants", citations: 117, doi: "10.3390/lubricants8010010", focus: "Nanoaditivos", pdf: "pdfs/articulo_01.pdf" },
   { id: 2, authors: "Zhang W.; Ji H.; Song Y.; Ma S.; Xiong W.; Chen C.; Chen B.; Zhang X.", title: "Green preparation of branched biolubricant by chemically modifying waste cooking oil with lipase and ionic liquid", year: 2020, journal: "Journal of Cleaner Production", citations: 106, doi: "10.1016/j.jclepro.2020.122918", focus: "Síntesis / modificación química", pdf: "pdfs/articulo_02.pdf" },
@@ -480,10 +532,10 @@ function renderContent() {
 
     const filtered = articlesData.filter(item => {
         const matchesCategory = (selectedCategory === 'all') || (item.focus === selectedCategory);
+        // El DOI queda excluido del filtro de búsqueda
         const matchesSearch = item.title.toLowerCase().includes(searchVal) ||
                               item.authors.toLowerCase().includes(searchVal) ||
                               item.journal.toLowerCase().includes(searchVal) ||
-                              item.doi.toLowerCase().includes(searchVal) ||
                               item.id.toString().includes(searchVal);
         return matchesCategory && matchesSearch;
     });
@@ -491,7 +543,6 @@ function renderContent() {
     filtered.forEach(item => {
         const badgeClass = getBadgeClass(item.focus);
 
-        // Render Tarjetas
         const cardHTML = `
             <div class="card">
                 <div>
@@ -504,6 +555,7 @@ function renderContent() {
                         <p><strong>Autores:</strong> ${item.authors}</p>
                         <p style="margin-top: 4px;"><strong>Revista:</strong> ${item.journal} (${item.year})</p>
                         <p style="margin-top: 4px;"><strong>Citas Scopus:</strong> ⭐ ${item.citations}</p>
+                        <p style="margin-top: 4px;"><strong>DOI:</strong> <a href="https://doi.org/${item.doi}" target="_blank" style="color: var(--secondary); font-family: monospace;">${item.doi}</a></p>
                     </div>
                 </div>
                 <div class="card-footer">
@@ -514,15 +566,15 @@ function renderContent() {
         `;
         cardsGrid.innerHTML += cardHTML;
 
-        // Render Tabla Matriz
         const rowHTML = `
             <tr>
                 <td><strong>#${item.id}</strong></td>
-                <td style="max-width: 320px;"><strong>${item.title}</strong></td>
+                <td style="max-width: 260px;"><strong>${item.title}</strong></td>
                 <td>${item.authors}</td>
                 <td>${item.year}</td>
                 <td>${item.journal}</td>
                 <td>⭐ ${item.citations}</td>
+                <td class="doi-cell"><a href="https://doi.org/${item.doi}" target="_blank">${item.doi}</a></td>
                 <td><span class="badge ${badgeClass}">${item.focus}</span></td>
                 <td>
                     <a href="${item.pdf}" target="_blank" class="btn-action btn-primary" style="padding: 0.3rem 0.6rem; font-size: 0.75rem;">PDF</a>
@@ -552,7 +604,6 @@ function applyFilters() {
     renderContent();
 }
 
-// Inicializar la vista al cargar
 renderContent();
 </script>
 
