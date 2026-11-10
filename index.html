@@ -3,218 +3,560 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Repositorio Abierto de Artículos Científicos</title>
+    <meta name="description" content="Repositorio Abierto y Matriz de Selección de 30 Artículos Científicos sobre Biolubricantes y Tribología.">
+    <title>Repositorio y Matriz de Selección | Biolubricantes</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        body { font-family: Arial, sans-serif; background: #f4f6f9; color: #333; margin: 0; padding: 20px; }
-        h1 { text-align: center; color: #1a365d; margin-bottom: 20px; }
-        .search-box { display: block; width: 100%; max-width: 500px; margin: 0 auto 25px auto; padding: 12px; font-size: 16px; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 15px; max-width: 1100px; margin: 0 auto; }
-        .card { background: white; border-radius: 8px; padding: 15px; box-shadow: 0 2px 5px rgba(0,0,0,0.08); display: flex; flex-direction: column; justify-content: space-between; }
-        .card h3 { margin-top: 0; color: #2b6cb0; font-size: 17px; }
-        .card p { font-size: 14px; color: #4a5568; flex-grow: 1; margin-bottom: 15px; }
-        .btn { display: inline-block; padding: 8px 12px; background: #2b6cb0; color: white; text-decoration: none; border-radius: 4px; font-size: 14px; text-align: center; }
-        .btn:hover { background: #1a365d; }
+        :root {
+            --primary: #1e3a8a;
+            --primary-hover: #1e40af;
+            --secondary: #0284c7;
+            --bg: #f8fafc;
+            --surface: #ffffff;
+            --text-main: #0f172a;
+            --text-muted: #475569;
+            --border: #e2e8f0;
+            --accent: #2563eb;
+            
+            /* Badges colors */
+            --badge-nano-bg: #dbeafe; --badge-nano-text: #1e40af;
+            --badge-sint-bg: #e0e7ff; --badge-sint-text: #3730a3;
+            --badge-gras-bg: #fef3c7; --badge-gras-text: #92400e;
+            --badge-mot-bg:  #dcfce7; --badge-mot-text:  #166534;
+            --badge-trib-bg: #fce7f3; --badge-trib-text: #9d174d;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background-color: var(--bg);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding: 2rem 1rem;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            padding: 2.5rem 1.5rem;
+            background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
+            color: white;
+            border-radius: 16px;
+            box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.25);
+            margin-bottom: 2rem;
+        }
+
+        header h1 {
+            font-size: 2.25rem;
+            font-weight: 700;
+            letter-spacing: -0.025em;
+            margin-bottom: 0.75rem;
+        }
+
+        header p {
+            font-size: 1.05rem;
+            color: #94a3b8;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Sección Metodológica */
+        .methodology-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.75rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
+
+        .methodology-card h2 {
+            color: var(--primary);
+            font-size: 1.35rem;
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .methodology-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+            text-align: justify;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1rem;
+            margin-top: 1.25rem;
+        }
+
+        .stat-item {
+            background: #f1f5f9;
+            padding: 1rem;
+            border-radius: 8px;
+            text-align: center;
+            border-left: 4px solid var(--secondary);
+        }
+
+        .stat-item .number {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .stat-item .label {
+            font-size: 0.825rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        /* Toolbar y Controles */
+        .controls-panel {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.25rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.03);
+        }
+
+        .search-box {
+            flex: 1;
+            min-width: 280px;
+            padding: 0.75rem 1rem;
+            font-size: 0.95rem;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .search-box:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        .view-toggle {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .toggle-btn {
+            padding: 0.6rem 1.2rem;
+            border: 1px solid var(--border);
+            background: #f8fafc;
+            color: var(--text-muted);
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.875rem;
+            transition: all 0.2s;
+        }
+
+        .toggle-btn.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .filters-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .filter-chip {
+            padding: 0.4rem 0.9rem;
+            border-radius: 20px;
+            font-size: 0.825rem;
+            font-weight: 500;
+            border: 1px solid var(--border);
+            background: var(--surface);
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .filter-chip:hover, .filter-chip.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        /* Badges Temáticos */
+        .badge {
+            display: inline-block;
+            padding: 0.25rem 0.6rem;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        .badge-nano { background: var(--badge-nano-bg); color: var(--badge-nano-text); }
+        .badge-sint { background: var(--badge-sint-bg); color: var(--badge-sint-text); }
+        .badge-gras { background: var(--badge-gras-bg); color: var(--badge-gras-text); }
+        .badge-mot  { background: var(--badge-mot-bg);  color: var(--badge-mot-text);  }
+        .badge-trib { background: var(--badge-trib-bg); color: var(--badge-trib-text); }
+
+        /* Vista de Tarjetas (Grid) */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.75rem;
+        }
+
+        .card-num {
+            font-weight: 700;
+            color: var(--secondary);
+            font-size: 0.9rem;
+        }
+
+        .card-title {
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: var(--text-main);
+            margin-bottom: 0.5rem;
+            line-height: 1.4;
+        }
+
+        .card-meta {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+        }
+
+        .card-footer {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .btn-action {
+            flex: 1;
+            padding: 0.6rem;
+            text-align: center;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: background 0.2s;
+        }
+
+        .btn-primary { background: var(--primary); color: white; }
+        .btn-primary:hover { background: var(--primary-hover); }
+        .btn-secondary { background: #f1f5f9; color: var(--text-main); border: 1px solid var(--border); }
+        .btn-secondary:hover { background: #e2e8f0; }
+
+        /* Vista de Tabla (Matriz) */
+        .table-container {
+            display: none;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            overflow-x: auto;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            font-size: 0.875rem;
+        }
+
+        th, td {
+            padding: 1rem 1.25rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        th {
+            background: #f8fafc;
+            color: var(--primary);
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        tr:hover { background: #f1f5f9; }
+
+        .doi-link {
+            color: var(--secondary);
+            text-decoration: none;
+            font-size: 0.8rem;
+        }
+
+        .doi-link:hover { text-decoration: underline; }
+
+        footer {
+            text-align: center;
+            margin-top: 3rem;
+            padding: 1.5rem;
+            color: var(--text-muted);
+            font-size: 0.875rem;
+            border-top: 1px solid var(--border);
+        }
     </style>
 </head>
 <body>
 
-<h1>Repositorio de Artículos e Investigaciones</h1>
-<input type="text" id="searchInput" class="search-box" placeholder="Buscar artículo..." onkeyup="filterPDFs()">
+<div class="container">
+    
+    <!-- Encabezado Principal -->
+    <header>
+        <h1>Repositorio & Matriz de Selección Bibliográfica</h1>
+        <p>Revisión sistemática de 30 artículos científicos de alto impacto enfocados en biolubricantes, nanoaditivos y comportamiento tribológico.</p>
+    </header>
 
-<div class="grid" id="pdfContainer">
+    <!-- Enunciado Metodológico -->
+    <section class="methodology-card">
+        <h2>📊 Estrategia de Búsqueda y Selección Metodológica</h2>
+        <p>
+            La presente selección de 30 artículos científicos constituye el marco estructural para la investigación en <strong>Biolubricantes a partir de aceites vegetales en elementos de máquinas</strong>. Los documentos fueron extraídos de bases de datos académicas internacionales reconocidas como <strong>Scopus, IEEE Xplore, ScienceDirect (Elsevier), SpringerLink y ACS Publications</strong>. 
+        </p>
+        <p>
+            El criterio de selección aplicó ecuaciones de búsqueda estructuradas combinando términos clave como <em>"biolubricant", "tribology", "nano-additives", "viscosity index", "wear scar diameter" y "chemical modification"</em>. Se priorizaron publicaciones recientes (2020–2023) con métricas elevadas de citas en Scopus y factor de impacto, clasificándolas en 5 focos temáticos estratégicos para abordar la formulación, caracterización y desempeño funcional en sistemas mecánicos reales.
+        </p>
 
-    <div class="card" data-title="Articulo 01 girasol SiO2 TiO2">
-        <h3>Artículo 01</h3>
-        <p>Aceite de girasol con nanopartículas de SiO2 y TiO2.</p>
-        <a href="pdfs/articulo_01.pdf" target="_blank" class="btn">Abrir PDF</a>
+        <div class="stats-grid">
+            <div class="stat-item">
+                <div class="number">30</div>
+                <div class="label">Artículos Seleccionados</div>
+            </div>
+            <div class="stat-item">
+                <div class="number">5</div>
+                <div class="label">Bases de Datos Principales</div>
+            </div>
+            <div class="stat-item">
+                <div class="number">2020 - 2023</div>
+                <div class="label">Rango de Publicación</div>
+            </div>
+            <div class="stat-item">
+                <div class="number">1,800+</div>
+                <div class="label">Total Citas Scopus</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Panel de Controles: Buscador y Alternador de Vistas -->
+    <div class="controls-panel">
+        <input type="text" id="searchInput" class="search-box" placeholder="🔍 Buscar por título, autor, revista, nanoaditivo o DOI..." onkeyup="applyFilters()">
+        
+        <div class="view-toggle">
+            <button class="toggle-btn active" id="btnGrid" onclick="setView('grid')">📱 Vista Tarjetas</button>
+            <button class="toggle-btn" id="btnTable" onclick="setView('table')">📋 Matriz Completa</button>
+        </div>
     </div>
 
-    <div class="card" data-title="Articulo 02 Euphorbia ZnO">
-        <h3>Artículo 02</h3>
-        <p>Aceite de Euphorbia Lathyris con nanopartículas de ZnO.</p>
-        <a href="pdfs/articulo_02.pdf" target="_blank" class="btn">Abrir PDF</a>
+    <!-- Filtros por Foco Temático -->
+    <div class="filters-group" id="filterGroup">
+        <button class="filter-chip active" onclick="filterCategory('all', this)">Todos (30)</button>
+        <button class="filter-chip" onclick="filterCategory('Nanoaditivos', this)">Nanoaditivos</button>
+        <button class="filter-chip" onclick="filterCategory('Síntesis / modificación química', this)">Síntesis / Modificación</button>
+        <button class="filter-chip" onclick="filterCategory('Grasas / oleogeles', this)">Grasas / Oleogeles</button>
+        <button class="filter-chip" onclick="filterCategory('Motor / engranajes / cojinetes', this)">Motor / Engranajes</button>
+        <button class="filter-chip" onclick="filterCategory('Propiedades tribológicas / otros', this)">Propiedades Tribológicas</button>
     </div>
 
-    <div class="card" data-title="Articulo 03 datil cobre Cu">
-        <h3>Artículo 03</h3>
-        <p>Aceite de dátil del desierto con nanopartículas de Cobre (Cu).</p>
-        <a href="pdfs/articulo_03.pdf" target="_blank" class="btn">Abrir PDF</a>
+    <!-- VISTA 1: GRID DE TARJETAS -->
+    <div class="cards-grid" id="cardsGrid">
+        <!-- Generado dinámicamente -->
     </div>
 
-    <div class="card" data-title="Articulo 04 Mahua epoxidado SiO2">
-        <h3>Artículo 04</h3>
-        <p>Aceite de Mahua epoxidado con nanopartículas de SiO2.</p>
-        <a href="pdfs/articulo_04.pdf" target="_blank" class="btn">Abrir PDF</a>
+    <!-- VISTA 2: TABLA MATRIZ DE SELECCIÓN -->
+    <div class="table-container" id="tableContainer">
+        <table>
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Título</th>
+                    <th>Autores</th>
+                    <th>Año</th>
+                    <th>Revista</th>
+                    <th>Citas</th>
+                    <th>Foco Temático</th>
+                    <th>Documento</th>
+                </tr>
+            </thead>
+            <tbody id="matrixTableBody">
+                <!-- Generado dinámicamente -->
+            </tbody>
+        </table>
     </div>
 
-    <div class="card" data-title="Articulo 05 WCO hidrolizados liquidos ionicos">
-        <h3>Artículo 05</h3>
-        <p>Aceites de cocina usados (WCO) hidrolizados con líquidos iónicos.</p>
-        <a href="pdfs/articulo_05.pdf" target="_blank" class="btn">Abrir PDF</a>
-    </div>
-
-    <div class="card" data-title="Articulo 06 WCO girasol epoxidado RSM">
-        <h3>Artículo 06</h3>
-        <p>WCO de girasol epoxidado (Diseño Estadístico RSM).</p>
-        <a href="pdfs/articulo_06.pdf" target="_blank" class="btn">Abrir PDF</a>
-    </div>
-
-    <div class="card" data-title="Articulo 07 ricino lignina palmitoilada">
-        <h3>Artículo 07</h3>
-        <p>Aceite de ricino con lignina palmitoilada como antioxidante.</p>
-        <a href="pdfs/articulo_07.pdf" target="_blank" class="btn">Abrir PDF</a>
-    </div>
-
-    <div class="card" data-title="Articulo 08 algodon TMP SAE 40">
-        <h3>Artículo 08</h3>
-        <p>Biolubricante de semilla de algodón (TMP) mezclado con SAE-40.</p>
-        <a href="pdfs/articulo_08.pdf" target="_blank" class="btn">Abrir PDF</a>
-    </div>
-
-    <div class="card" data-title="Articulo 09 ricino nano-montmorillonita C20A oleogeles">
-        <h3>Artículo 09</h3>
-        <p>Aceite de ricino y nano-montmorillonita C20A (Oleogeles).</p>
-        <a href="pdfs/articulo_09.pdf" target="_blank" class="btn">Abrir PDF</a>
-    </div>
-
-    <div class="card" data-title="Articulo 10 ester metilico estearina palma epoxidado">
-        <h3>Artículo 10</h3>
-        <p>Éster metílico de estearina de palma epoxidado.</p>
-        <a href="pdfs/articulo_10.pdf" target="_blank" class="btn">Abrir PDF</a>
-    </div>
-
-    <div class="card" data-title="Articulo 11 ricino Fe3O4 oxido hierro">
-        <h3>Artículo 11</h3>
-        <p>Aceite de ricino con nanopartículas de óxido de hierro (Fe3O4).</p>
-        <a href="pdfs/articulo_11.pdf" target="_blank" class="btn">Abrir PDF</a>
-    </div>
-
-    <div class="card" data-title="Articulo 12 microalgas fusel enzimatica">
-        <h3>Artículo 12</h3>
-        <p>Aceite de microalgas y aceite de fusel mediante catálisis enzimática.</p>
-        <a href="pdfs/articulo_12.pdf" target="_blank" class="btn">Abrir PDF</a>
-    </div>
-
-    <div class="card" data-title="Articulo 13 Shorea Robusta CuO oxido cobre">
-        <h3>Artículo 13</h3>
-        <p>Aceite de Sal (Shorea Robusta) con nanopartículas de CuO.</p>
-        <a href="pdfs/articulo_13.pdf" target="_blank" class="btn">Abrir PDF</a>
-    </div>
-
-    <div class="card" data-title="Articulo 14 microalgas hidrogeno motores">
-        <h3>Artículo 14</h3>
-        <p>Aceite de microalgas modificado para motores de hidrógeno.</p>
-        <a href="pdfs/articulo_14.pdf" target="_blank" class="btn">Abrir PDF</a>
-    </div>
-
-    <div class="card" data-title="Articulo 15 NPG palma CPO diester">
-        <h3>Artículo 15</h3>
-        <p>Diéster de neopentilglicol (NPG) basado en ácidos grasos de palma.</p>
-        <a href="pdfs/articulo_15.pdf" target="_blank" class="btn">Abrir PDF</a>
-    </div>
-
-    <div class="card" data-title="Articulo 16 esteres decilicos soya lipasas">
-        <h3>Artículo 16</h3>
-        <p>Ésteres decílicos de aceite de soya catalizados por lipasas.</p>
-        <a href="pdfs/articulo_16.pdf" target="_blank" class="btn">Abrir PDF</a>
-    </div>
-
-    <div class="card" data-title="Articulo 17 nanocelulosa MFC trietilo grasas">
-        <h3>Artículo 17</h3>
-        <p>Grasas biodegradables a base de nanocelulosa (MFC).</p>
-        <a href="pdfs/articulo_17.pdf" target="_blank" class="btn">Abrir PDF</a>
-    </div>
-
-    <div class="card" data-title="Articulo 18 BIOE oxido grafeno liquido ionico">
-        <h3>Artículo 18</h3>
-        <p>Biolubricante de éster (BIOE) con óxido de grafeno y líquido iónico.</p>
-        <a href="pdfs/articulo_18.pdf" target="_blank" class="btn">Abrir PDF</a>
-    </div>
-
-    <div class="card" data-title="Articulo 19 ricino superlubricidad DLC">
-        <h3>Artículo 19</h3>
-        <p>Aceite de ricino y ácidos grasos para superlubricidad en pares DLC.</p>
-        <a href="pdfs/articulo_19.pdf" target="_blank" class="btn">Abrir PDF</a>
-    </div>
-
-    <div class="card" data-title="Articulo 20 palma hBN nitruro boro">
-        <h3>Artículo 20</h3>
-        <p>Aceite de palma mezclado con nanopartículas de nitruro de boro (hBN).</p>
-        <a href="pdfs/articulo_20.pdf" target="_blank" class="btn">Abrir PDF</a>
-    </div>
-
-    <div class="card" data-title="Articulo 21 Calophyllum inophyllum CIO epoxidacion">
-        <h3>Artículo 21</h3>
-        <p>Aceite de Calophyllum inophyllum (CIO) modificado.</p>
-        <a href="pdfs/articulo_21.pdf" target="_blank" class="btn">Abrir PDF</a>
-    </div>
-
-    <div class="card" data-title="Articulo 22 Michelia Champaca CeO2 cerio">
-        <h3>Artículo 22</h3>
-        <p>Aceite de Michelia Champaca epoxidado con nanopartículas de CeO2.</p>
-        <a href="pdfs/articulo_22.pdf" target="_blank" class="btn">Abrir PDF</a>
-    </div>
-
-    <div class="card" data-title="Articulo 23 algodon RSM ANN sintetizado">
-        <h3>Artículo 23</h3>
-        <p>Biolubricante de algodón sintetizado mediante RSM y ANN.</p>
-        <a href="pdfs/articulo_23.pdf" target="_blank" class="btn">Abrir PDF</a>
-    </div>
-
-    <div class="card" data-title="Articulo 24 salvado arroz karanja epoxidacion transesterificacion">
-        <h3>Artículo 24</h3>
-        <p>Aceites de salvado de arroz y karanja modificados.</p>
-        <a href="pdfs/articulo_24.pdf" target="_blank" class="btn">Abrir PDF</a>
-    </div>
-
-    <div class="card" data-title="Articulo 25 grafeno 3D MWCNT ricino">
-        <h3>Artículo 25</h3>
-        <p>Grafeno poroso jerárquico 3D y MWCNT en aceite de ricino.</p>
-        <a href="pdfs/articulo_25.pdf" target="_blank" class="btn">Abrir PDF</a>
-    </div>
-
-    <div class="card" data-title="Articulo 26 ricino IF-WS2 oleico">
-        <h3>Artículo 26</h3>
-        <p>Aceite de ricino con nanopartículas de IF-WS2 modificadas.</p>
-        <a href="pdfs/articulo_26.pdf" target="_blank" class="btn">Abrir PDF</a>
-    </div>
-
-    <div class="card" data-title="Articulo 27 oleogeles lignina ricino">
-        <h3>Artículo 27</h3>
-        <p>Oleogeles a base de lignina modificada en aceite de ricino.</p>
-        <a href="pdfs/articulo_27.pdf" target="_blank" class="btn">Abrir PDF</a>
-    </div>
-
-    <div class="card" data-title="Articulo 28 TiO2 gC3N4 mani nanocompuesto">
-        <h3>Artículo 28</h3>
-        <p>Nanocompuesto de TiO2/gC3N4 en aceite vegetal de maní.</p>
-        <a href="pdfs/articulo_28.pdf" target="_blank" class="btn">Abrir PDF</a>
-    </div>
-
-    <div class="card" data-title="Articulo 29 BIOE GnP grafeno nanoplacas">
-        <h3>Artículo 29</h3>
-        <p>Biolubricante de éster (BIOE) con nanoplacas de grafeno (GnP).</p>
-        <a href="pdfs/articulo_29.pdf" target="_blank" class="btn">Abrir PDF</a>
-    </div>
-
-    <div class="card" data-title="Articulo 30 WCO curcumina cocina usado">
-        <h3>Artículo 30</h3>
-        <p>Biolubricante de aceite de cocina usado con curcumina.</p>
-        <a href="pdfs/articulo_30.pdf" target="_blank" class="btn">Abrir PDF</a>
-    </div>
+    <footer>
+        Repositorio de Investigación en Biolubricantes y Tribología &copy; 2026 | Universidad Distrital Francisco José de Caldas
+    </footer>
 
 </div>
 
 <script>
-function filterPDFs() {
-    const input = document.getElementById('searchInput').value.toLowerCase();
-    const cards = document.querySelectorAll('.card');
-    cards.forEach(card => {
-        const text = card.innerText.toLowerCase();
-        card.style.display = text.includes(input) ? "" : "none";
+// Datos de la Matriz de Selección
+const articlesData = [
+  { id: 1, authors: "Cortes V.; Sanchez K.; Gonzalez R.; Alcoutlabi M.; Ortega J.A.", title: "The performance of SiO2 and TiO2 nanoparticles as lubricant additives in sunflower oil", year: 2020, journal: "Lubricants", citations: 117, doi: "10.3390/lubricants8010010", focus: "Nanoaditivos", pdf: "pdfs/articulo_01.pdf" },
+  { id: 2, authors: "Zhang W.; Ji H.; Song Y.; Ma S.; Xiong W.; Chen C.; Chen B.; Zhang X.", title: "Green preparation of branched biolubricant by chemically modifying waste cooking oil with lipase and ionic liquid", year: 2020, journal: "Journal of Cleaner Production", citations: 106, doi: "10.1016/j.jclepro.2020.122918", focus: "Síntesis / modificación química", pdf: "pdfs/articulo_02.pdf" },
+  { id: 3, authors: "Bashiri S.; Ghobadian B.; Dehghani Soufi M.; Gorjian S.", title: "Chemical modification of sunflower waste cooking oil for biolubricant production through epoxidation reaction", year: 2021, journal: "Materials Science for Energy Technologies", citations: 92, doi: "10.1016/j.mset.2021.03.001", focus: "Síntesis / modificación química", pdf: "pdfs/articulo_03.pdf" },
+  { id: 4, authors: "Singh Y.; Kumar Singh N.; Sharma A.; Singla A.; Singh D.; Abd Rahim E.", title: "Effect of ZnO nanoparticles concentration as additives to the epoxidized Euphorbia Lathyris oil and their tribological characterization", year: 2021, journal: "Fuel", citations: 85, doi: "10.1016/j.fuel.2020.119148", focus: "Nanoaditivos", pdf: "pdfs/articulo_04.pdf" },
+  { id: 5, authors: "Singh Y.; Sharma A.; Singh N.K.; Chen W.-H.", title: "Development of bio-based lubricant from modified desert date oil (balanites aegyptiaca) with copper nanoparticles addition and their tribological analysis", year: 2020, journal: "Fuel", citations: 80, doi: "10.1016/j.fuel.2019.116259", focus: "Nanoaditivos", pdf: "pdfs/articulo_05.pdf" },
+  { id: 6, authors: "Jedrzejczyk M.A.; Van den Bosch S.; Van Aelst J.; et al.", title: "Lignin-Based Additives for Improved Thermo-Oxidative Stability of Biolubricants", year: 2021, journal: "ACS Sustainable Chemistry and Engineering", citations: 78, doi: "10.1021/acssuschemeng.1c02799", focus: "Síntesis / modificación química", pdf: "pdfs/articulo_06.pdf" },
+  { id: 7, authors: "Singh Y.; Rahim E.A.; Singh N.K.; Sharma A.; Singla A.; Palamanit A.", title: "Friction and wear characteristics of chemically modified mahua (madhuca indica) oil based lubricant with SiO2 nanoparticles as additives", year: 2022, journal: "Wear", citations: 78, doi: "10.1016/j.wear.2022.204463", focus: "Nanoaditivos", pdf: "pdfs/articulo_07.pdf" },
+  { id: 8, authors: "Gul M.; Zulkifli N.W.M.; Masjuki H.H.; Kalam M.A.; et al.", title: "Effect of TMP-based-cottonseed oil-biolubricant blends on tribological behavior of cylinder liner-piston ring combinations", year: 2020, journal: "Fuel", citations: 73, doi: "10.1016/j.fuel.2020.118242", focus: "Motor / engranajes / cojinetes", pdf: "pdfs/articulo_08.pdf" },
+  { id: 9, authors: "Martín-Alfonso J.E.; Martín-Alfonso M.J.; Valencia C.; Cuberes M.T.", title: "Rheological and tribological approaches as a tool for the development of sustainable lubricating greases based on nano-montmorillonite and castor oil", year: 2021, journal: "Friction", citations: 69, doi: "10.1007/s40544-020-0407-y", focus: "Grasas / oleogeles", pdf: "pdfs/articulo_09.pdf" },
+  { id: 10, authors: "Afifah A.N.; Syahrullail S.; Wan Azlee N.I.; Rohah A.M.", title: "Synthesis and tribological studies of epoxidized palm stearin methyl ester as a green lubricant", year: 2021, journal: "Journal of Cleaner Production", citations: 61, doi: "10.1016/j.jclepro.2020.124320", focus: "Síntesis / modificación química", pdf: "pdfs/articulo_10.pdf" },
+  { id: 11, authors: "Ahmad U.; Raza Naqvi S.; Ali I.; Saleem F.; et al.", title: "Biolubricant production from castor oil using iron oxide nanoparticles as an additive: Experimental, modelling and tribological assessment", year: 2022, journal: "Fuel", citations: 61, doi: "10.1016/j.fuel.2022.124565", focus: "Nanoaditivos", pdf: "pdfs/articulo_11.pdf" },
+  { id: 12, authors: "Da Silva A.P.T.; Bredda E.H.; de Castro H.F.; Da Rós P.C.M.", title: "Enzymatic catalysis: An environmentally friendly method to enhance the transesterification of microalgal oil with fusel oil for production of fatty acid esters with potential application as biolubricants", year: 2020, journal: "Fuel", citations: 60, doi: "10.1016/j.fuel.2020.117786", focus: "Síntesis / modificación química", pdf: "pdfs/articulo_12.pdf" },
+  { id: 13, authors: "Kumar Chaurasia S.; Kumar Singh N.; Kumar Singh L.", title: "Friction and wear behavior of chemically modified Sal (Shorea Robusta) oil for bio based lubricant application with effect of CuO nanoparticles", year: 2020, journal: "Fuel", citations: 56, doi: "10.1016/j.fuel.2020.118762", focus: "Nanoaditivos", pdf: "pdfs/articulo_13.pdf" },
+  { id: 14, authors: "Cheah M.Y.; Ong H.C.; Zulkifli N.W.M.; Masjuki H.H.; Salleh A.", title: "Physicochemical and tribological properties of microalgae oil as biolubricant for hydrogen-powered engine", year: 2020, journal: "International Journal of Hydrogen Energy", citations: 52, doi: "10.1016/j.ijhydene.2019.11.020", focus: "Motor / engranajes / cojinetes", pdf: "pdfs/articulo_14.pdf" },
+  { id: 15, authors: "Nor N.M.; Salih N.; Salimon J.", title: "Optimization and lubrication properties of Malaysian crude palm oil fatty acids based neopentyl glycol diester green biolubricant", year: 2022, journal: "Renewable Energy", citations: 52, doi: "10.1016/j.renene.2022.09.112", focus: "Síntesis / modificación química", pdf: "pdfs/articulo_15.pdf" },
+  { id: 16, authors: "Sabi G.J.; Gama R.S.; Fernandez-Lafuente R.; et al.", title: "Decyl esters production from soybean-based oils catalyzed by lipase immobilized on differently functionalized rice husk silica and their characterization as potential biolubricants", year: 2022, journal: "Enzyme and Microbial Technology", citations: 51, doi: "10.1016/j.enzmictec.2022.110019", focus: "Síntesis / modificación química", pdf: "pdfs/articulo_16.pdf" },
+  { id: 17, authors: "Ilyin S.O.; Gorbacheva S.N.; Yadykova A.Y.", title: "Rheology and tribology of nanocellulose-based biodegradable greases: Wear and friction protection mechanisms of cellulose microfibrils", year: 2023, journal: "Tribology International", citations: 51, doi: "10.1016/j.triboint.2022.108080", focus: "Grasas / oleogeles", pdf: "pdfs/articulo_17.pdf" },
+  { id: 18, authors: "Liñeira del Río J.M.; López E.R.; García F.; Fernández J.", title: "Tribological synergies among chemical-modified graphene oxide nanomaterials and a phosphonium ionic liquid as additives of a biolubricant", year: 2021, journal: "Journal of Molecular Liquids", citations: 50, doi: "10.1016/j.molliq.2021.116885", focus: "Nanoaditivos", pdf: "pdfs/articulo_18.pdf" },
+  { id: 19, authors: "Long Y.; Galipaud J.; Weihnacht V.; et al.", title: "Achieving superlubricity using selected tribo-pairs lubricated by castor oil and unsaturated fatty acids", year: 2022, journal: "Tribology International", citations: 50, doi: "10.1016/j.triboint.2022.107462", focus: "Propiedades tribológicas / otros", pdf: "pdfs/articulo_19.pdf" },
+  { id: 20, authors: "Abdollah M.F.B.; Amiruddin H.; Jamallulil A.D.", title: "Experimental analysis of tribological performance of palm oil blended with hexagonal boron nitride nanoparticles as an environment-friendly lubricant", year: 2020, journal: "Int. J. Adv. Manuf. Technol.", citations: 50, doi: "10.1007/s00170-019-04906-5", focus: "Nanoaditivos", pdf: "pdfs/articulo_20.pdf" },
+  { id: 21, authors: "Prasannakumar P.; Edla S.; Thampi A.D.; et al.", title: "A comparative study on the lubricant properties of chemically modified Calophyllum inophyllum oils for bio-lubricant applications", year: 2022, journal: "Journal of Cleaner Production", citations: 49, doi: "10.1016/j.jclepro.2022.130733", focus: "Síntesis / modificación química", pdf: "pdfs/articulo_21.pdf" },
+  { id: 22, authors: "Singh Y.; Abd Rahim E.", title: "Michelia Champaca: Sustainable novel non-edible oil as nano based bio-lubricant with tribological investigation", year: 2020, journal: "Fuel", citations: 48, doi: "10.1016/j.fuel.2020.118830", focus: "Nanoaditivos", pdf: "pdfs/articulo_22.pdf" },
+  { id: 23, authors: "Gul M.; Zulkifli N.W.M.; Kalam M.A.; et al.", title: "RSM and Artificial Neural Networking based production optimization of sustainable Cotton bio-lubricant and evaluation of its lubricity & tribological properties", year: 2021, journal: "Energy Reports", citations: 47, doi: "10.1016/j.egyr.2021.01.033", focus: "Síntesis / modificación química", pdf: "pdfs/articulo_23.pdf" },
+  { id: 24, authors: "Edla S.; Thampi A.D.; Prasannakumar P.; Rani S.", title: "Evaluation of physicochemical, tribological and oxidative stability properties of chemically modified rice bran and karanja oils as viable lubricant base stocks for industrial applications", year: 2022, journal: "Tribology International", citations: 47, doi: "10.1016/j.triboint.2022.107631", focus: "Síntesis / modificación química", pdf: "pdfs/articulo_24.pdf" },
+  { id: 25, authors: "Ouyang T.; Tang W.; Pan M.; Tang J.; Huang H.", title: "Friction-reducing and anti-wear properties of 3D hierarchical porous graphene/multi-walled carbon nanotube in castor oil under severe condition", year: 2022, journal: "Wear", citations: 45, doi: "10.1016/j.wear.2022.204302", focus: "Nanoaditivos", pdf: "pdfs/articulo_25.pdf" },
+  { id: 26, authors: "Ouyang T.; Lei W.; Tang W.; Shen Y.; Mo C.", title: "Experimental investigation of the effect of IF-WS2 as an additive in castor oil on tribological property", year: 2021, journal: "Wear", citations: 44, doi: "10.1016/j.wear.2021.204070", focus: "Nanoaditivos", pdf: "pdfs/articulo_26.pdf" },
+  { id: 27, authors: "Wu Z.; Thoresen P.P.; Matsakas L.; et al.", title: "Facile Synthesis of Lignin-Castor Oil-Based Oleogels as Green Lubricating Greases with Excellent Lubricating and Antioxidation Properties", year: 2023, journal: "ACS Sustainable Chemistry & Eng.", citations: 43, doi: "10.1021/acssuschemeng.3c01801", focus: "Grasas / oleogeles", pdf: "pdfs/articulo_27.pdf" },
+  { id: 28, authors: "Ranjan N.; Shende R.C.; Kamaraj M.; Ramaprabhu S.", title: "Utilization of TiO2/gC3N4 nanoadditive to boost oxidative properties of vegetable oil for tribological application", year: 2021, journal: "Friction", citations: 43, doi: "10.1007/s40544-019-0336-9", focus: "Nanoaditivos", pdf: "pdfs/articulo_28.pdf" },
+  { id: 29, authors: "Liñeira del Río J.M.; Guimarey M.J.G.; Prado J.I.; et al.", title: "Improving the tribological performance of a biodegradable lubricant adding graphene nanoplatelets as additives", year: 2022, journal: "Journal of Molecular Liquids", citations: 42, doi: "10.1016/j.molliq.2021.117797", focus: "Nanoaditivos", pdf: "pdfs/articulo_29.pdf" },
+  { id: 30, authors: "Singh N.; Agarwal P.; Porwal S.K.", title: "Natural Antioxidant Extracted Waste Cooking Oil as Sustainable Biolubricant Formulation in Tribological and Rheological Applications", year: 2022, journal: "Waste and Biomass Valorization", citations: 41, doi: "10.1007/s12649-022-01745-6", focus: "Propiedades tribológicas / otros", pdf: "pdfs/articulo_30.pdf" }
+];
+
+let selectedCategory = 'all';
+
+function getBadgeClass(focus) {
+    if (focus.includes('Nanoaditivos')) return 'badge-nano';
+    if (focus.includes('Síntesis')) return 'badge-sint';
+    if (focus.includes('Grasas')) return 'badge-gras';
+    if (focus.includes('Motor')) return 'badge-mot';
+    return 'badge-trib';
+}
+
+function renderContent() {
+    const searchVal = document.getElementById('searchInput').value.toLowerCase();
+    const cardsGrid = document.getElementById('cardsGrid');
+    const tableBody = document.getElementById('matrixTableBody');
+
+    cardsGrid.innerHTML = '';
+    tableBody.innerHTML = '';
+
+    const filtered = articlesData.filter(item => {
+        const matchesCategory = (selectedCategory === 'all') || (item.focus === selectedCategory);
+        const matchesSearch = item.title.toLowerCase().includes(searchVal) ||
+                              item.authors.toLowerCase().includes(searchVal) ||
+                              item.journal.toLowerCase().includes(searchVal) ||
+                              item.doi.toLowerCase().includes(searchVal) ||
+                              item.id.toString().includes(searchVal);
+        return matchesCategory && matchesSearch;
+    });
+
+    filtered.forEach(item => {
+        const badgeClass = getBadgeClass(item.focus);
+
+        // Render Tarjetas
+        const cardHTML = `
+            <div class="card">
+                <div>
+                    <div class="card-header">
+                        <span class="card-num">Artículo #${String(item.id).padStart(2, '0')}</span>
+                        <span class="badge ${badgeClass}">${item.focus}</span>
+                    </div>
+                    <h3 class="card-title">${item.title}</h3>
+                    <div class="card-meta">
+                        <p><strong>Autores:</strong> ${item.authors}</p>
+                        <p style="margin-top: 4px;"><strong>Revista:</strong> ${item.journal} (${item.year})</p>
+                        <p style="margin-top: 4px;"><strong>Citas Scopus:</strong> ⭐ ${item.citations}</p>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <a href="${item.pdf}" target="_blank" class="btn-action btn-primary">Abrir PDF</a>
+                    <a href="https://doi.org/${item.doi}" target="_blank" class="btn-action btn-secondary">Ver DOI</a>
+                </div>
+            </div>
+        `;
+        cardsGrid.innerHTML += cardHTML;
+
+        // Render Tabla Matriz
+        const rowHTML = `
+            <tr>
+                <td><strong>#${item.id}</strong></td>
+                <td style="max-width: 320px;"><strong>${item.title}</strong></td>
+                <td>${item.authors}</td>
+                <td>${item.year}</td>
+                <td>${item.journal}</td>
+                <td>⭐ ${item.citations}</td>
+                <td><span class="badge ${badgeClass}">${item.focus}</span></td>
+                <td>
+                    <a href="${item.pdf}" target="_blank" class="btn-action btn-primary" style="padding: 0.3rem 0.6rem; font-size: 0.75rem;">PDF</a>
+                </td>
+            </tr>
+        `;
+        tableBody.innerHTML += rowHTML;
     });
 }
+
+function setView(view) {
+    document.getElementById('btnGrid').classList.toggle('active', view === 'grid');
+    document.getElementById('btnTable').classList.toggle('active', view === 'table');
+    document.getElementById('cardsGrid').style.display = view === 'grid' ? 'grid' : 'none';
+    document.getElementById('tableContainer').style.display = view === 'table' ? 'block' : 'none';
+}
+
+function filterCategory(category, element) {
+    selectedCategory = category;
+    const chips = document.querySelectorAll('.filter-chip');
+    chips.forEach(c => c.classList.remove('active'));
+    element.classList.add('active');
+    renderContent();
+}
+
+function applyFilters() {
+    renderContent();
+}
+
+// Inicializar la vista al cargar
+renderContent();
 </script>
 
 </body>
 </html>
+
+   
